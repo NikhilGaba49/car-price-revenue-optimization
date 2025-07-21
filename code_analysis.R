@@ -89,3 +89,34 @@ stargazer(reg_1, reg_2, reg_3, reg_4, reg_5, type="text", # the regressions to i
           dep.var.labels=c("Price of Vehicle"), # dependent variable name (i.e. Price of Vehicle)
           covariate.labels= c("Wheelbase", "Interior Area", "Horsepower", "Is SUV", "Is Toyota"), # Names/labels of the coefficients
           out="reg_output.txt")   # Output results to your directory in a text file
+
+# Confirming the direction of the bias term for each biased coefficient.
+# We compare the signs of the coefficients to the correlations between two regressors.
+# Using correlation to determine the sign of the bias term on Wheelbase as a result of Interior Area.
+cor(data$wheelbase,data$interior_area) # Bias term is positive
+# Additionally, interior area has a positive coefficient in the regression.
+
+# Using correlation to determine the sign of the bias term on Interior Area as a result of Horsepower.
+cor(data$interior_area,data$horsepower) # Bias term is positive.
+# Additionally, horsepower has a positive coefficient in the regression.
+
+# Using correlation to determine the sign of the bias term on horsepower as a result of Toyota.
+cor(data$horsepower,data$toyota) # We look at the sign of the coefficient of Toyota and compare it to the sign of
+# the correlation between horsepower and Toyota. i.e. The raw correlation does not adjust for other features present within the regression.
+# The correlation is positive but Toyota's coefficient is negative. Therefore, the bias term is negative.
+
+# Jointly testing hypothesis tests 
+# Overall regression F-statistic has all of the slope coefficients (of regressors) to be 0 as the null hypothesis, and we test against this hypothesis
+linearHypothesis(reg_5,c("wheelbase=0",
+                         "interior_area=0",
+                         "horsepower=0",
+                         "suv=0",
+                         "toyota=0"),vcov = vcovHC(reg_5, "HC1"))# assuming heteroskedasticity
+# in part b, we are join testing whether both of the coefficients for wheelbase and suv are jointly 0 as the null hypothesis
+linearHypothesis(reg_5,c("wheelbase=0",
+                         "suv=0"),vcov = vcovHC(reg_5, "HC1")) # again assuming heteroskedasticity
+
+# Additionally, we need to compare how the p-value for the joint test compares to the individual test.
+linearHypothesis(reg_5,c("wheelbase=0"),vcov = vcovHC(reg_5, "HC1")) # again assuming heteroskedasticity
+linearHypothesis(reg_5,c("suv=0"),vcov = vcovHC(reg_5, "HC1")) # again assuming heteroskedasticity
+cor(data$suv,data$wheelbase) # To look at the correlation between the two variables, testing for imperfect multicollinearity. 
