@@ -46,3 +46,4 @@ The analysis was conducted in **R**, using the following key packages:
 - `ggplot2` for data visualization  
 
 The final regression specification used for prediction is:
+price = β0 + β1(wheelbase) + β2(interior_area) + β3(horsepower) + β4(suv) + β5(toyota) + ε
