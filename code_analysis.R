@@ -1,3 +1,5 @@
+setwd("C:/Users/Nikhil Gaba/Documents/Internship/GitHub Repositories/car-price-revenue-optimization")
+
 # Load necessary libraries
 library(stargazer)
 library(AER)
