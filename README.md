@@ -11,7 +11,7 @@ Using a dataset of 750 automobiles, we estimate how vehicle characteristics such
 - **Data Analysis & Visualisation:** Summary statistics, scatter plots with regression lines, interpretation of bias and multicollinearity.
 - **Optimisation & Algorithmic Thinking:** Brute-force search for profit maximisation (Python).
 - **Programming:**  
-  - **R:** `stargazer`, `AER`, `sandwich`, `lmtest`  
+  - **R:** `stargazer`, `AER`  
   - **Python:** Pure Python implementation (no external libraries)
 
 ---
@@ -22,10 +22,10 @@ Using a dataset of 750 automobiles, we estimate how vehicle characteristics such
 - **wheelbase**: distance between front and rear wheels (inches)  
 - **interior_area**: interior space (cubic feet)  
 - **horsepower**: engine horsepower  
-- **car**: dummy variable (1 = car, 0 = otherwise)  
-- **suv**: dummy variable (1 = SUV, 0 = otherwise)  
-- **toyota**: dummy variable (1 = Toyota, 0 = otherwise)  
-- **honda**: dummy variable (1 = Honda, 0 = otherwise)  
+- **car**: dummy variable (1 = car, 0 = SUV)  
+- **suv**: dummy variable (1 = SUV, 0 = car)  
+- **toyota**: dummy variable (1 = Toyota, 0 = Honda)  
+- **honda**: dummy variable (1 = Honda, 0 = Toyota)  
 
 ---
 
